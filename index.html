@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Nerd search generator</title>
+    <title>Nerd Search Generator</title>
 
     <!-- here's the sites list. -->
     <script id="data">
@@ -34,13 +34,12 @@
             "spectrum.ieee.org",
             "eurekalert.org",
             "technologyreview.com",
+            "Forskning.no",
             "ncbi.nlm.nih.gov/pubmed/",
             "mayoclinic.org",
-            "Forskning.no",
-            "nrk.no/viten/",
-            "quora.com",
-            
-
+	            "Forskning.no",
+	            "nrk.no/viten/",
+	            "quora.com",
         ];
     </script>
 
@@ -93,7 +92,7 @@
         }
 
         #sitesFilter {
-            margin: 0 20% auto auto;
+            margin: 0 auto;
             width: 40%;
         }
 
@@ -106,7 +105,7 @@
 
         .alert-info {
             color: #31708f;
-            background-color: white;
+            background-color: #d9edf7;
             border-color: #bce8f1;
         }
     </style>
@@ -114,7 +113,7 @@
   <body>
       <div class="container">
 
-            <h1><center>Nerd Search</center></h1>
+            <h1><center>Nerdesøk</center></h1>
             <div style="text-align: center;">
                 <input type="text" id="searchTerm" class="input-text" /><a onclick="go();" href="javascript:void();" class="btn">GO!</a>
             </div>
@@ -122,7 +121,7 @@
             <br>
 
             <div class="alert alert-info" role="alert"> 
-                This is a google search generator that exclusively searches on the pages checked off below. Missing a page? Send a proposal to nerd@erikhjertholm.net
+                <strong>Heads up!</strong> This alert needs your attention, but it's not super important. 
             </div>
 
             <div id="sitesFilter"></div>
@@ -130,6 +129,7 @@
     </div>
 
     <script>
+        var searchBox = document.getElementById("searchTerm");
         document.addEventListener('DOMContentLoaded', function() {
             var container = document.getElementById('sitesFilter');
             window.sites.map(function(s, index, arr) {
@@ -155,11 +155,13 @@
                 div.appendChild(label);
 
                 container.appendChild(div);
+
+                searchBox.focus();
             });
         }, false);
 
         function go() {
-            var searchTerm = encodeURI(document.getElementById("searchTerm").value);
+            var searchTerm = encodeURI(searchBox.value);
             var mainUrl = 'https://www.google.no/#safe=off&q=';
             var googleUrl = mainUrl + searchTerm;
 
